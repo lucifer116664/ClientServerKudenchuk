@@ -1,0 +1,13 @@
+D:\Codes\Kudenchuk\Client\Client\bin\Debug\Client.exe.config
+D:\Codes\Kudenchuk\Client\Client\bin\Debug\Client.exe
+D:\Codes\Kudenchuk\Client\Client\bin\Debug\Client.pdb
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.csproj.AssemblyReference.cache
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.csproj.SuggestedBindingRedirects.cache
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.Authorisation.resources
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.Properties.Resources.resources
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.Registration.resources
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.csproj.GenerateResource.cache
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.exe
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.pdb
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.Cabinet.resources
