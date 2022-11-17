@@ -17,6 +17,30 @@ namespace Client
             StartPosition= FormStartPosition.CenterScreen;
         }
 
+        private void Authorisation_Load(object sender, EventArgs e)
+        {
+            ControlBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            PasswordTextbox.PasswordChar = '⁕';
+            ShowPictureBox.Visible = true;
+            HidePictureBox.Visible = false;
+        }
+
+        private void ShowPictureBox_Click(object sender, EventArgs e)
+        {
+            PasswordTextbox.UseSystemPasswordChar = true;
+            ShowPictureBox.Visible = false;
+            HidePictureBox.Visible = true;
+        }
+
+        private void HidePictureBox_Click(object sender, EventArgs e)
+        {
+            PasswordTextbox.UseSystemPasswordChar = false;
+            ShowPictureBox.Visible = true;
+            HidePictureBox.Visible = false;
+        }
+
         private void CreateAccButton_Click(object sender, EventArgs e)
         {
             Registration reg = new Registration();
@@ -36,7 +60,7 @@ namespace Client
 
             var command = Encoding.UTF8.GetBytes("Authorisation");
             var login = Encoding.UTF8.GetBytes(LoginTextbox.Text);
-            var password = Encoding.UTF8.GetBytes(Program.PasswordHashing(LoginTextbox.Text));
+            var password = Encoding.UTF8.GetBytes(Program.PasswordHashing(PasswordTextbox.Text));
 
             socket.Send(command);
 
@@ -122,10 +146,5 @@ namespace Client
             }
         }
 
-        private void Authorisation_Load(object sender, EventArgs e)
-        {
-            ControlBox = false;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-        }
     }
 }

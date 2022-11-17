@@ -17,6 +17,30 @@ namespace Client
             
         }
 
+        private void Registration_Load(object sender, EventArgs e)
+        {
+            ControlBox = false;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            PasswordTextBox.PasswordChar = '⁕';
+            ShowPictureBox.Visible = true;
+            HidePictureBox.Visible = false;
+        }
+
+        private void ShowPictureBox_Click(object sender, EventArgs e)
+        {
+            PasswordTextBox.UseSystemPasswordChar = true;
+            ShowPictureBox.Visible = false;
+            HidePictureBox.Visible = true;
+        }
+
+        private void HidePictureBox_Click(object sender, EventArgs e)
+        {
+            PasswordTextBox.UseSystemPasswordChar = false;
+            ShowPictureBox.Visible = true;
+            HidePictureBox.Visible = false;
+        }
+
         private void QuitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -147,10 +171,5 @@ namespace Client
             Hide();
         }
 
-        private void Registration_Load(object sender, EventArgs e)
-        {
-            ControlBox = false;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-        }
     }
 }

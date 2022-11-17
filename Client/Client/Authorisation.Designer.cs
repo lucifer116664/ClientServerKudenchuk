@@ -34,6 +34,10 @@
             this.PasswordTextbox = new System.Windows.Forms.TextBox();
             this.QuitButton = new System.Windows.Forms.Button();
             this.LogInButton = new System.Windows.Forms.Button();
+            this.ShowPictureBox = new System.Windows.Forms.PictureBox();
+            this.HidePictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.ShowPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HidePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // CreateAccButton
@@ -95,6 +99,30 @@
             this.LogInButton.UseVisualStyleBackColor = false;
             this.LogInButton.Click += new System.EventHandler(this.LogInButton_Click);
             // 
+            // ShowPictureBox
+            // 
+            this.ShowPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ShowPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("ShowPictureBox.Image")));
+            this.ShowPictureBox.Location = new System.Drawing.Point(493, 269);
+            this.ShowPictureBox.Name = "ShowPictureBox";
+            this.ShowPictureBox.Size = new System.Drawing.Size(53, 53);
+            this.ShowPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ShowPictureBox.TabIndex = 11;
+            this.ShowPictureBox.TabStop = false;
+            this.ShowPictureBox.Click += new System.EventHandler(this.ShowPictureBox_Click);
+            // 
+            // HidePictureBox
+            // 
+            this.HidePictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.HidePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("HidePictureBox.Image")));
+            this.HidePictureBox.Location = new System.Drawing.Point(493, 269);
+            this.HidePictureBox.Name = "HidePictureBox";
+            this.HidePictureBox.Size = new System.Drawing.Size(53, 53);
+            this.HidePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.HidePictureBox.TabIndex = 12;
+            this.HidePictureBox.TabStop = false;
+            this.HidePictureBox.Click += new System.EventHandler(this.HidePictureBox_Click);
+            // 
             // Authorisation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -103,6 +131,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ShowPictureBox);
+            this.Controls.Add(this.HidePictureBox);
             this.Controls.Add(this.LogInButton);
             this.Controls.Add(this.QuitButton);
             this.Controls.Add(this.PasswordTextbox);
@@ -111,6 +141,8 @@
             this.Name = "Authorisation";
             this.Text = "Authorisation";
             this.Load += new System.EventHandler(this.Authorisation_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ShowPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HidePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +155,8 @@
         private System.Windows.Forms.TextBox PasswordTextbox;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Button LogInButton;
+        private System.Windows.Forms.PictureBox ShowPictureBox;
+        private System.Windows.Forms.PictureBox HidePictureBox;
     }
 }
 
