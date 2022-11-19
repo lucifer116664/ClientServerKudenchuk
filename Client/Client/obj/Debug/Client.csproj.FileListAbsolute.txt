@@ -11,3 +11,8 @@ D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.exe
 D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.pdb
 D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.Cabinet.resources
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.CancelVisit.resources
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.FindDoctor.resources
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.MedicalHistory.resources
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.RegisterVisit.resources
+D:\Codes\Kudenchuk\Client\Client\obj\Debug\Client.FindDoctorResult.resources

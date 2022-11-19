@@ -59,6 +59,36 @@
     <Compile Include="Cabinet.Designer.cs">
       <DependentUpon>Cabinet.cs</DependentUpon>
     </Compile>
+    <Compile Include="CancelVisit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancelVisit.Designer.cs">
+      <DependentUpon>CancelVisit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FindDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindDoctor.Designer.cs">
+      <DependentUpon>FindDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FindDoctorResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindDoctorResult.Designer.cs">
+      <DependentUpon>FindDoctorResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MedicalHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicalHistory.Designer.cs">
+      <DependentUpon>MedicalHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterVisit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterVisit.Designer.cs">
+      <DependentUpon>RegisterVisit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +103,18 @@
     <EmbeddedResource Include="Cabinet.resx">
       <DependentUpon>Cabinet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CancelVisit.resx">
+      <DependentUpon>CancelVisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindDoctor.resx">
+      <DependentUpon>FindDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindDoctorResult.resx">
+      <DependentUpon>FindDoctorResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicalHistory.resx">
+      <DependentUpon>MedicalHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -82,6 +124,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegisterVisit.resx">
+      <DependentUpon>RegisterVisit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
     </EmbeddedResource>

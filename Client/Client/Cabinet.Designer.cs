@@ -72,6 +72,7 @@
             this.FindDoctorButton.TabIndex = 12;
             this.FindDoctorButton.Text = "Find the doctor";
             this.FindDoctorButton.UseVisualStyleBackColor = false;
+            this.FindDoctorButton.Click += new System.EventHandler(this.FindDoctorButton_Click);
             // 
             // RegisterVisitButton
             // 
@@ -82,8 +83,9 @@
             this.RegisterVisitButton.Name = "RegisterVisitButton";
             this.RegisterVisitButton.Size = new System.Drawing.Size(246, 81);
             this.RegisterVisitButton.TabIndex = 13;
-            this.RegisterVisitButton.Text = "Register a visit";
+            this.RegisterVisitButton.Text = "Register to a visit";
             this.RegisterVisitButton.UseVisualStyleBackColor = false;
+            this.RegisterVisitButton.Click += new System.EventHandler(this.RegisterVisitButton_Click);
             // 
             // CancelVisitButton
             // 
@@ -96,6 +98,7 @@
             this.CancelVisitButton.TabIndex = 14;
             this.CancelVisitButton.Text = "Cancel the visit";
             this.CancelVisitButton.UseVisualStyleBackColor = false;
+            this.CancelVisitButton.Click += new System.EventHandler(this.CancelVisitButton_Click);
             // 
             // MedicalHistoryButton
             // 
@@ -108,6 +111,7 @@
             this.MedicalHistoryButton.TabIndex = 15;
             this.MedicalHistoryButton.Text = "My medical history";
             this.MedicalHistoryButton.UseVisualStyleBackColor = false;
+            this.MedicalHistoryButton.Click += new System.EventHandler(this.MedicalHistoryButton_Click);
             // 
             // Cabinet
             // 

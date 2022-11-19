@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -9,7 +8,7 @@ namespace Client
     {
         private int size;
         private byte[] buffer = new byte[256];
-        StringBuilder answer = new StringBuilder();
+        private StringBuilder answer = new StringBuilder();
 
         public Authorisation()
         {

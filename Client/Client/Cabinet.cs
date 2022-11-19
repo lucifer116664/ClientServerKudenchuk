@@ -31,5 +31,33 @@ namespace Client
             socket.Disconnect();
             Application.Exit();
         }
+
+        private void RegisterVisitButton_Click(object sender, EventArgs e)
+        {
+            RegisterVisit registerVisit= new RegisterVisit(socket, login);
+            registerVisit.Show();
+            Hide();
+        }
+
+        private void FindDoctorButton_Click(object sender, EventArgs e)
+        {
+            FindDoctor findDoc = new FindDoctor(socket, login);
+            findDoc.Show();
+            Hide();
+        }
+
+        private void MedicalHistoryButton_Click(object sender, EventArgs e)
+        {
+            MedicalHistory medHistory = new MedicalHistory(socket, login);
+            medHistory.Show();
+            Hide();
+        }
+
+        private void CancelVisitButton_Click(object sender, EventArgs e)
+        {
+            CancelVisit cancelVisit= new CancelVisit(socket, login);
+            cancelVisit.Show();
+            Hide();
+        }
     }
 }
