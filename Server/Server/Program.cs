@@ -33,13 +33,15 @@ namespace Server
 
         public static void InEveryThread(Socket listener)
         {
+            bool makeNextLoop = true;
+
             byte[] buffer = new byte[256];
 
             int size;
 
             StringBuilder data = new StringBuilder();
 
-            while (true)
+            while (makeNextLoop)
             {
                 do
                 {
@@ -64,7 +66,13 @@ namespace Server
                         break;
 
                     case "Disconnect":
-                        Disconnect(listener);
+                        listener.Shutdown(SocketShutdown.Both);
+                        listener.Close();
+                        makeNextLoop= false;
+                        break;
+
+                    case "FindDoctor":
+                        FindDoctor(listener);
                         break;
                 }
             }
@@ -200,10 +208,63 @@ namespace Server
             sqlConnection.Close();
         }
 
-        public static void Disconnect(Socket listener)
+        public static void FindDoctor(Socket listener)
         {
-            listener.Shutdown(SocketShutdown.Both);
-            listener.Close();
+
+            SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
+            sqlConnection.Open();
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            DataTable table = new DataTable();
+
+            byte[] buffer = new byte[256];
+            int size;
+            StringBuilder data = new StringBuilder();
+
+            do
+            {
+                size = listener.Receive(buffer);
+                data.Append(Encoding.UTF8.GetString(buffer, 0, size));
+            }
+            while (listener.Available > 0);
+
+            string doctorName = data.ToString();
+            data.Clear();
+
+            listener.Send(Encoding.UTF8.GetBytes("GotData"));
+
+            string sqlQuery = "SELECT * FROM Doctors WHERE Surname = @doctorName";
+
+            SqlCommand cmd = new SqlCommand(sqlQuery, sqlConnection);
+
+            cmd.Parameters.Add("@doctorName", SqlDbType.VarChar, 50).Value = doctorName;
+
+            table.Load(cmd.ExecuteReader());
+
+            string doctorInfo = DataTableToString(table);
+
+            listener.Send(Encoding.UTF8.GetBytes(doctorInfo));
+        }
+
+        private static string DataTableToString(DataTable dt)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                for (int i = 0; i < row.ItemArray.Length; i++)
+                {
+                    string rowText = row.ItemArray[i].ToString();
+                    if (rowText.Contains(","))
+                    {
+                        rowText = rowText.Replace(",", "/");
+                    }
+
+                    builder.Append(rowText + ",  ");
+                }
+                builder.Append(Environment.NewLine);
+            }
+            return builder.ToString();
         }
     }
 }
