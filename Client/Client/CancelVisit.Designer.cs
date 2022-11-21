@@ -32,6 +32,8 @@
             this.BackButton = new System.Windows.Forms.Button();
             this.LoginLabel = new System.Windows.Forms.Label();
             this.QuitButton = new System.Windows.Forms.Button();
+            this.CheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BackButton
@@ -71,6 +73,29 @@
             this.QuitButton.UseVisualStyleBackColor = false;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
+            // CheckedListBox
+            // 
+            this.CheckedListBox.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckedListBox.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.CheckedListBox.FormattingEnabled = true;
+            this.CheckedListBox.Location = new System.Drawing.Point(88, 93);
+            this.CheckedListBox.Name = "CheckedListBox";
+            this.CheckedListBox.Size = new System.Drawing.Size(654, 179);
+            this.CheckedListBox.TabIndex = 29;
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.BackColor = System.Drawing.Color.RoyalBlue;
+            this.CancelButton.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.CancelButton.Location = new System.Drawing.Point(301, 343);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(199, 50);
+            this.CancelButton.TabIndex = 30;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
             // CancelVisit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -79,9 +104,12 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.CheckedListBox);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.LoginLabel);
             this.Controls.Add(this.QuitButton);
+            this.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.Name = "CancelVisit";
             this.Text = "CancelVisit";
             this.Load += new System.EventHandler(this.CancelVisit_Load);
@@ -95,5 +123,7 @@
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Label LoginLabel;
         private System.Windows.Forms.Button QuitButton;
+        private System.Windows.Forms.CheckedListBox CheckedListBox;
+        private System.Windows.Forms.Button CancelButton;
     }
 }

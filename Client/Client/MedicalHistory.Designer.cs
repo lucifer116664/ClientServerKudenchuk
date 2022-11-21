@@ -32,6 +32,7 @@
             this.BackButton = new System.Windows.Forms.Button();
             this.LoginLabel = new System.Windows.Forms.Label();
             this.QuitButton = new System.Windows.Forms.Button();
+            this.DoctorTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BackButton
@@ -71,6 +72,16 @@
             this.QuitButton.UseVisualStyleBackColor = false;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
+            // DoctorTextBox
+            // 
+            this.DoctorTextBox.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoctorTextBox.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.DoctorTextBox.Location = new System.Drawing.Point(52, 85);
+            this.DoctorTextBox.Multiline = true;
+            this.DoctorTextBox.Name = "DoctorTextBox";
+            this.DoctorTextBox.Size = new System.Drawing.Size(696, 281);
+            this.DoctorTextBox.TabIndex = 35;
+            // 
             // MedicalHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -79,6 +90,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DoctorTextBox);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.LoginLabel);
             this.Controls.Add(this.QuitButton);
@@ -95,5 +107,6 @@
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Label LoginLabel;
         private System.Windows.Forms.Button QuitButton;
+        private System.Windows.Forms.TextBox DoctorTextBox;
     }
 }

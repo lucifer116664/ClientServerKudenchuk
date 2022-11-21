@@ -35,7 +35,6 @@
             this.QuitButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -108,17 +107,6 @@
             this.label3.TabIndex = 38;
             this.label3.Text = "Date and time";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label4.Location = new System.Drawing.Point(521, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(187, 30);
-            this.label4.TabIndex = 39;
-            this.label4.Text = "Reserved or not";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -139,7 +127,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.QuitButton);
@@ -161,7 +148,6 @@
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
     }
 }

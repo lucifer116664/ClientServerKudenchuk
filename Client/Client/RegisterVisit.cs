@@ -9,6 +9,13 @@ namespace Client
         private AllAboutSocket socket;
         private string login;
 
+        private byte[] command = Encoding.UTF8.GetBytes("RegisterVisit");
+
+        private int size;
+        private byte[] buffer = new byte[256];
+        private StringBuilder answer = new StringBuilder();
+
+
         public RegisterVisit(AllAboutSocket socket, string login)
         {
             InitializeComponent();
@@ -38,6 +45,108 @@ namespace Client
             Cabinet cabinet = new Cabinet(socket, login);
             cabinet.Show();
             Hide();
+        }
+
+        private void RegisterButton_Click(object sender, EventArgs e)
+        {
+            string docSurname = NameTextbox.Text;
+            string dateTime = DatePicker.Value.ToString();
+
+            dateTime = dateTime.Replace("0:00:00", TimePicker.Text);
+
+            socket.Send(command);
+
+            do
+            {
+                size = socket.Receive(buffer);
+                answer.Append(Encoding.UTF8.GetString(buffer, 0, size));
+            }
+            while (socket.AvailableBiggerThanZero());
+
+            if (answer.ToString() != "GotData")
+            {
+                MessageBox.Show("Server didn`t got the data", "Server ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                answer.Clear();
+                socket.Send(Encoding.UTF8.GetBytes(docSurname));
+
+                do
+                {
+                    size = socket.Receive(buffer);
+                    answer.Append(Encoding.UTF8.GetString(buffer, 0, size));
+                }
+                while (socket.AvailableBiggerThanZero());
+
+                if (answer.ToString() != "GotData")
+                {
+                    MessageBox.Show("Server didn`t got the data", "Server ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    answer.Clear();
+                    socket.Send(Encoding.UTF8.GetBytes(dateTime));
+
+                    do
+                    {
+                        size = socket.Receive(buffer);
+                        answer.Append(Encoding.UTF8.GetString(buffer, 0, size));
+                    }
+                    while (socket.AvailableBiggerThanZero());
+
+                    if (answer.ToString() != "GotData")
+                    {
+                        MessageBox.Show("Server didn`t got the data", "Server ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        answer.Clear();
+                        socket.Send(Encoding.UTF8.GetBytes(login));
+
+                        do
+                        {
+                            size = socket.Receive(buffer);
+                            answer.Append(Encoding.UTF8.GetString(buffer, 0, size));
+                        }
+                        while (socket.AvailableBiggerThanZero());
+
+                        if (answer.ToString() != "GotData")
+                        {
+                            MessageBox.Show("Server didn`t got the data", "Server ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            answer.Clear();
+
+                            do
+                            {
+                                size = socket.Receive(buffer);
+                                answer.Append(Encoding.UTF8.GetString(buffer, 0, size));
+                            }
+                            while (socket.AvailableBiggerThanZero());
+
+                            if (answer.ToString() == "Success")
+                            {
+                                MessageBox.Show("You were registered", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else if (answer.ToString() == "Exists")
+                            {
+                                MessageBox.Show("You can not rigister in this time", "Doctor is busy", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                MessageBox.Show(answer.ToString(), "Server ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void TimePicker_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

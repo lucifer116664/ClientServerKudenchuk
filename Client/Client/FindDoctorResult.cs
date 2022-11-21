@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Client
@@ -76,8 +75,6 @@ namespace Client
                     while (socket.AvailableBiggerThanZero());
 
                     string result = answer.ToString();
-                    result = result.Replace("True,", "Reserved");
-                    DoctorTextBox.Text = result.Replace("False,", "Free");
                 }
             }
         }
