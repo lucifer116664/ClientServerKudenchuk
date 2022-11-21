@@ -85,7 +85,7 @@
             this.DatePicker.Name = "DatePicker";
             this.DatePicker.Size = new System.Drawing.Size(182, 40);
             this.DatePicker.TabIndex = 18;
-            this.DatePicker.Value = new System.DateTime(2022, 12, 22, 0, 0, 0, 0);
+            this.DatePicker.Value = new System.DateTime(2022, 11, 22, 0, 0, 0, 0);
             // 
             // RegisterButton
             // 
@@ -127,12 +127,12 @@
             // TimePicker
             // 
             this.TimePicker.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimePicker.Items.Add("8:00");
-            this.TimePicker.Items.Add("9:00");
-            this.TimePicker.Items.Add("10:00");
-            this.TimePicker.Items.Add("11:00");
-            this.TimePicker.Items.Add("12:00");
             this.TimePicker.Items.Add("13:00");
+            this.TimePicker.Items.Add("12:00");
+            this.TimePicker.Items.Add("11:00");
+            this.TimePicker.Items.Add("10:00");
+            this.TimePicker.Items.Add("9:00");
+            this.TimePicker.Items.Add("8:00");
             this.TimePicker.Location = new System.Drawing.Point(440, 186);
             this.TimePicker.Name = "TimePicker";
             this.TimePicker.Size = new System.Drawing.Size(96, 40);

@@ -45,6 +45,7 @@
             this.DoctorTextBox.Location = new System.Drawing.Point(55, 95);
             this.DoctorTextBox.Multiline = true;
             this.DoctorTextBox.Name = "DoctorTextBox";
+            this.DoctorTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DoctorTextBox.Size = new System.Drawing.Size(696, 281);
             this.DoctorTextBox.TabIndex = 34;
             // 
@@ -90,7 +91,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(100, 56);
+            this.label1.Location = new System.Drawing.Point(68, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 30);
             this.label1.TabIndex = 36;
@@ -112,7 +113,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(222, 56);
+            this.label2.Location = new System.Drawing.Point(197, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 30);
             this.label2.TabIndex = 40;
@@ -134,7 +135,7 @@
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.LoginLabel);
             this.Name = "FindDoctorResult";
-            this.Text = "FindDoctorResult";
+            this.Text = "When the doctor is busy";
             this.Load += new System.EventHandler(this.FindDoctorResult_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

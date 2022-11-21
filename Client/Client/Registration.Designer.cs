@@ -45,7 +45,7 @@
             this.CreateAccountButton.BackColor = System.Drawing.Color.RoyalBlue;
             this.CreateAccountButton.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateAccountButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.CreateAccountButton.Location = new System.Drawing.Point(306, 258);
+            this.CreateAccountButton.Location = new System.Drawing.Point(309, 268);
             this.CreateAccountButton.Name = "CreateAccountButton";
             this.CreateAccountButton.Size = new System.Drawing.Size(182, 53);
             this.CreateAccountButton.TabIndex = 12;
@@ -57,7 +57,7 @@
             // 
             this.PasswordTextBox.Font = new System.Drawing.Font("Modern No. 20", 18F);
             this.PasswordTextBox.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.PasswordTextBox.Location = new System.Drawing.Point(306, 199);
+            this.PasswordTextBox.Location = new System.Drawing.Point(309, 209);
             this.PasswordTextBox.Multiline = true;
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(182, 53);
@@ -80,7 +80,7 @@
             // 
             this.LoginTextBox.Font = new System.Drawing.Font("Modern No. 20", 18F);
             this.LoginTextBox.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.LoginTextBox.Location = new System.Drawing.Point(306, 140);
+            this.LoginTextBox.Location = new System.Drawing.Point(309, 150);
             this.LoginTextBox.Multiline = true;
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.Size = new System.Drawing.Size(182, 53);
@@ -103,7 +103,7 @@
             // 
             this.ShowPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ShowPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("ShowPictureBox.Image")));
-            this.ShowPictureBox.Location = new System.Drawing.Point(494, 258);
+            this.ShowPictureBox.Location = new System.Drawing.Point(497, 209);
             this.ShowPictureBox.Name = "ShowPictureBox";
             this.ShowPictureBox.Size = new System.Drawing.Size(53, 53);
             this.ShowPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -115,7 +115,7 @@
             // 
             this.HidePictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.HidePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("HidePictureBox.Image")));
-            this.HidePictureBox.Location = new System.Drawing.Point(494, 258);
+            this.HidePictureBox.Location = new System.Drawing.Point(497, 209);
             this.HidePictureBox.Name = "HidePictureBox";
             this.HidePictureBox.Size = new System.Drawing.Size(53, 53);
             this.HidePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

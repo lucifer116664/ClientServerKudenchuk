@@ -29,6 +29,7 @@ namespace Client
             LoginLabel.Text = login;
             ControlBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            NameTextbox.Text = "";
             socket.Connect();
         }
 
@@ -52,7 +53,7 @@ namespace Client
             string docSurname = NameTextbox.Text;
             string dateTime = DatePicker.Value.ToString();
 
-            dateTime = dateTime.Replace("0:00:00", TimePicker.Text);
+            dateTime = dateTime.Replace("0:00:00", TimePicker.Text + ":00");
 
             socket.Send(command);
 
@@ -129,14 +130,18 @@ namespace Client
                             if (answer.ToString() == "Success")
                             {
                                 MessageBox.Show("You were registered", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                RegisterVisit_Load(sender, e);
+                                answer.Clear();
                             }
                             else if (answer.ToString() == "Exists")
                             {
                                 MessageBox.Show("You can not rigister in this time", "Doctor is busy", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                answer.Clear();
                             }
                             else
                             {
                                 MessageBox.Show(answer.ToString(), "Server ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                answer.Clear();
                             }
                         }
                     }

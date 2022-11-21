@@ -123,7 +123,7 @@
             this.Controls.Add(this.LoginLabel);
             this.Controls.Add(this.QuitButton);
             this.Name = "FindDoctor";
-            this.Text = "FindDoctor";
+            this.Text = "When the Doctor is busy";
             this.Load += new System.EventHandler(this.FindDoctor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

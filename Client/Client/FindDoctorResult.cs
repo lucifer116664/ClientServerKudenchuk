@@ -59,23 +59,16 @@ namespace Client
                 }
                 while (socket.AvailableBiggerThanZero());
 
-                if (answer.ToString() != "GotData")
-                {
-                    MessageBox.Show("Server didn`t got the data", "Server ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    answer.Clear();
+                string result = answer.ToString();
 
-                    do
-                    {
-                        size = socket.Receive(buffer);
-                        answer.Append(Encoding.UTF8.GetString(buffer, 0, size));
-                    }
-                    while (socket.AvailableBiggerThanZero());
-
-                    string result = answer.ToString();
+                if(result.Equals("There is no doctor with this surname") || result.Equals("Doctor is free all the time"))
+                {
+                    label1.Visible= false;
+                    label2.Visible= false;
+                    label3.Visible= false;
                 }
+
+                DoctorTextBox.Text = result;
             }
         }
 

@@ -34,6 +34,7 @@
             this.QuitButton = new System.Windows.Forms.Button();
             this.CheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.TextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BackButton
@@ -96,6 +97,16 @@
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // TextBox
+            // 
+            this.TextBox.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.TextBox.Location = new System.Drawing.Point(205, 162);
+            this.TextBox.Multiline = true;
+            this.TextBox.Name = "TextBox";
+            this.TextBox.Size = new System.Drawing.Size(386, 71);
+            this.TextBox.TabIndex = 31;
+            // 
             // CancelVisit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -104,6 +115,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TextBox);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.CheckedListBox);
             this.Controls.Add(this.BackButton);
@@ -125,5 +137,6 @@
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.CheckedListBox CheckedListBox;
         private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.TextBox TextBox;
     }
 }

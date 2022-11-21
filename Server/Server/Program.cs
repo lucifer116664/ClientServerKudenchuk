@@ -226,7 +226,6 @@ namespace Server
 
         public static void FindDoctor(Socket listener)
         {
-
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
             sqlConnection.Open();
 
@@ -246,19 +245,40 @@ namespace Server
             string doctorName = data.ToString();
             data.Clear();
 
-            listener.Send(Encoding.UTF8.GetBytes("GotData"));
-
-            string sqlQuery = "SELECT Name, Surname, Cabinet, DateTime FROM Doctors WHERE Surname = @doctorName AND IsBusy = 0";
+            string sqlQuery = "SELECT * FROM Doctors WHERE Surname = @doctorName";
 
             SqlCommand cmd = new SqlCommand(sqlQuery, sqlConnection);
 
             cmd.Parameters.Add("@doctorName", SqlDbType.VarChar, 50).Value = doctorName;
 
             table.Load(cmd.ExecuteReader());
+            sqlConnection.Close();
 
-            string doctorInfo = DataTableToString(table);
+            if (table.Rows.Count < 1)  //if doctor not exists
+            {
+                listener.Send(Encoding.UTF8.GetBytes("There is no doctor with this surname"));
+            }
+            else
+            {
+                sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
+                sqlConnection.Open();
+                sqlQuery = "SELECT Name, Surname, Cabinet, DateTime FROM Visits WHERE Surname = @doctorName";
 
-            listener.Send(Encoding.UTF8.GetBytes(doctorInfo));
+                cmd = new SqlCommand(sqlQuery, sqlConnection);
+
+                cmd.Parameters.Add("@doctorName", SqlDbType.VarChar, 50).Value = doctorName;
+
+                table = new DataTable();
+                table.Load(cmd.ExecuteReader());
+
+                string doctorInfo = DataTableToString(table);
+
+                if (doctorInfo == "")
+                    listener.Send(Encoding.UTF8.GetBytes("Doctor is free all the time"));
+                else
+                    listener.Send(Encoding.UTF8.GetBytes(doctorInfo));
+                sqlConnection.Close();
+            }
         }
 
         private static void MedHistory(Socket listener)
@@ -291,34 +311,41 @@ namespace Server
             cmd.Parameters.Add("@login", SqlDbType.VarChar, 50).Value = login;
 
             table.Load(cmd.ExecuteReader());
-
-            StringBuilder builder = new StringBuilder();
-
-            foreach (DataRow row in table.Rows)
+            if (table.Rows.Count < 1)  //if doctor not exists
             {
-                int counter = 0;
-                for (int i = 0; i < row.ItemArray.Length; i++)
-                {
-                    string rowText = row.ItemArray[i].ToString();
-                    if (rowText.Contains(","))
-                    {
-                        rowText = rowText.Replace(",", "/");
-                    }
-                    counter++;
-                    if (counter == 5 || counter == 6)
-                        builder.Append(rowText + Environment.NewLine);
-                    else
-                        builder.Append(rowText + ",  ");
-                    
-                }
-                builder.Append(Environment.NewLine);
+                listener.Send(Encoding.UTF8.GetBytes("You have no medical history"));
             }
+            else
+            {
+                StringBuilder builder = new StringBuilder();
 
-            string medHistory = builder.ToString();
-            medHistory = medHistory.Replace($"{login}, ", "");
-            medHistory = medHistory.Replace(" 0:00:00", "");
+                foreach (DataRow row in table.Rows)
+                {
+                    int counter = 0;
+                    for (int i = 0; i < row.ItemArray.Length; i++)
+                    {
+                        string rowText = row.ItemArray[i].ToString();
+                        if (rowText.Contains(","))
+                        {
+                            rowText = rowText.Replace(",", "/");
+                        }
+                        counter++;
+                        if (counter == 5 || counter == 6)
+                            builder.Append(rowText + Environment.NewLine);
+                        else
+                            builder.Append(rowText + ",  ");
 
-            listener.Send(Encoding.UTF8.GetBytes(medHistory));
+                    }
+                    builder.Append(Environment.NewLine);
+                }
+
+                string medHistory = builder.ToString();
+                medHistory = medHistory.Replace($"{login}, ", "");
+                medHistory = medHistory.Replace(" 0:00:00", "");
+
+                listener.Send(Encoding.UTF8.GetBytes(medHistory));
+            }
+            sqlConnection.Close();
         }
 
         public static void RegisterVisit(Socket listener)
@@ -341,6 +368,7 @@ namespace Server
 
             string surname = data.ToString();
             data.Clear();
+            listener.Send(Encoding.UTF8.GetBytes("GotData"));
 
             do
             {
@@ -366,7 +394,7 @@ namespace Server
 
             listener.Send(Encoding.UTF8.GetBytes("GotData"));
 
-            string sqlQuery = $"SELECT * FROM Doctors WHERE Surname = @Surname AND DateTime = @DateTime AND IsBusy = 1";
+            string sqlQuery = $"SELECT * FROM Visits WHERE Surname = @Surname AND DateTime = @DateTime";
 
             SqlCommand cmd = new SqlCommand(sqlQuery, sqlConnection);
             SqlDataAdapter adapter= new SqlDataAdapter();
@@ -388,7 +416,7 @@ namespace Server
             {
                 sqlConnection.Open();
 
-                sqlQuery = "SELECT TOP 1 Name, Cabinet FROM Doctors WHERE Surname = @Surname";
+                sqlQuery = "SELECT * FROM Doctors WHERE Surname = @Surname";
 
                 cmd = new SqlCommand(sqlQuery, sqlConnection);
 
@@ -406,7 +434,6 @@ namespace Server
                 {
                     for (int i = 0; i < row.ItemArray.Length; i++)
                     {
-                        int counter = 0;
                         string rowText = row.ItemArray[i].ToString();
                         if (rowText.Contains(","))
                         {
@@ -414,15 +441,15 @@ namespace Server
                         }
 
                         builder.Append(rowText);
-                        if (counter == 0)
+                        if (i == 1)
                             name = rowText;
-                        else
+                        if (i == 3)
                             cabinet = rowText;
                     }
                 }
                 sqlConnection.Open();
 
-                sqlQuery = "INSERT INTO Doctors VALUES (@Name, @Surname, @Cabinet, @DateTime, 1, @Login)";
+                sqlQuery = "INSERT INTO Visits VALUES (@Name, @Surname, @Cabinet, @DateTime, @Login)";
 
                 cmd = new SqlCommand(sqlQuery, sqlConnection);
 
@@ -449,17 +476,38 @@ namespace Server
             SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
             sqlConnection.Open();
 
+            StringBuilder data = new StringBuilder();
+            byte[] buffer = new byte[256];
+
+            do
+            {
+                int size = listener.Receive(buffer);
+                data.Append(Encoding.UTF8.GetString(buffer, 0, size));
+            }
+            while (listener.Available > 0);
+
+            string login = data.ToString();
+            data.Clear();
+
             DataTable table = new DataTable();
 
-            string sqlQuery = $"SELECT Login FROM Guardians";
+            string sqlQuery = $"SELECT ID, Name, Surname, DateTime, Login FROM Visits WHERE Login = @Login";
 
             SqlCommand cmd = new SqlCommand(sqlQuery, sqlConnection);
 
+            cmd.Parameters.Add("@Login", SqlDbType.VarChar, 50).Value = login;
+
             table.Load(cmd.ExecuteReader());
 
-            string visits = DataTableToString(table);
-            listener.Send(Encoding.UTF8.GetBytes(visits));
-
+            if (table.Rows.Count < 1)  //if doctor not exists
+            {
+                listener.Send(Encoding.UTF8.GetBytes("You have no registered visits"));
+            }
+            else
+            {
+                string visits = DataTableToString(table);
+                listener.Send(Encoding.UTF8.GetBytes(visits));
+            }
             sqlConnection.Close();
         }
 
@@ -485,14 +533,13 @@ namespace Server
                 id = data.ToString();
                 data.Clear();
 
-                listener.Send(Encoding.UTF8.GetBytes("GotData"));
                 if (id != "thatWasLastOne")
                 {
-                    string sqlQuery = "DELETE FROM Doctors WHERE ID = @ID";
+                    string sqlQuery = "DELETE FROM Visits WHERE ID = @ID";
 
                     SqlCommand cmd = new SqlCommand(sqlQuery, sqlConnection);
 
-                    cmd.Parameters.Add("@ID", SqlDbType.VarChar, 50).Value = id;
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = id;
 
                     if (cmd.ExecuteNonQuery() == 1)
                     {
@@ -503,6 +550,8 @@ namespace Server
                         listener.Send(Encoding.UTF8.GetBytes("Error"));
                     }
                 }
+                else
+                    listener.Send(Encoding.UTF8.GetBytes("GotData"));
                 sqlConnection.Close();
             }
         }

@@ -79,6 +79,7 @@
             this.DoctorTextBox.Location = new System.Drawing.Point(52, 85);
             this.DoctorTextBox.Multiline = true;
             this.DoctorTextBox.Name = "DoctorTextBox";
+            this.DoctorTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DoctorTextBox.Size = new System.Drawing.Size(696, 281);
             this.DoctorTextBox.TabIndex = 35;
             // 

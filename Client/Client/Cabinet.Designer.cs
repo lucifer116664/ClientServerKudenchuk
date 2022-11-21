@@ -70,7 +70,7 @@
             this.FindDoctorButton.Name = "FindDoctorButton";
             this.FindDoctorButton.Size = new System.Drawing.Size(246, 81);
             this.FindDoctorButton.TabIndex = 12;
-            this.FindDoctorButton.Text = "Find the doctor";
+            this.FindDoctorButton.Text = "When the doctor is busy?";
             this.FindDoctorButton.UseVisualStyleBackColor = false;
             this.FindDoctorButton.Click += new System.EventHandler(this.FindDoctorButton_Click);
             // 

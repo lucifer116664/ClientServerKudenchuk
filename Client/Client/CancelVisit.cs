@@ -27,6 +27,7 @@ namespace Client
         {
             LoginLabel.Text = login;
             ControlBox = false;
+            TextBox.Visible= false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
             socket.Connect();
@@ -48,6 +49,7 @@ namespace Client
             else
             {
                 answer.Clear();
+                socket.Send(Encoding.UTF8.GetBytes(login));
 
                 do
                 {
@@ -56,34 +58,44 @@ namespace Client
                 }
                 while (socket.AvailableBiggerThanZero());
 
-                string[] visitsArray = new string[1];
-                char[] visitsBuffer = answer.ToString().ToCharArray();
-                int visitsArrayCounter = 0;
-
-                answer.Clear();
-
-                for (int visitsBufferCounter = 0; visitsBufferCounter < visitsBuffer.Length; visitsBufferCounter++)
+                if (answer.ToString() == "You have no registered visits")
                 {
-                    if (visitsBuffer[visitsBufferCounter].Equals(','))
-                    {
-                        Array.Resize(ref visitsArray, visitsArray.Length + 1);
-                        visitsArrayCounter++;
-                    }
-                    else if (visitsBuffer[visitsBufferCounter].Equals('\r') || visitsBuffer[visitsBufferCounter].Equals('\n'))
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        visitsArray[visitsArrayCounter] += visitsBuffer[visitsBufferCounter];
-                    }
+                    TextBox.Visible = true;
+                    CheckedListBox.Visible = false;
+                    TextBox.Text = answer.ToString();
+                    answer.Clear();
                 }
-
-                CheckedListBox.Items.Clear();
-
-                for (int i = 0; i < visitsArray.Length - 1; i++)
+                else
                 {
-                    CheckedListBox.Items.Insert(i, visitsArray[i]);
+                    string[] visitsArray = new string[1];
+                    char[] visitsBuffer = answer.ToString().ToCharArray();
+                    int visitsArrayCounter = 0;
+
+                    answer.Clear();
+
+                    for (int visitsBufferCounter = 0; visitsBufferCounter < visitsBuffer.Length; visitsBufferCounter++)
+                    {
+                        if (visitsBuffer[visitsBufferCounter].Equals('\n'))
+                        {
+                            Array.Resize(ref visitsArray, visitsArray.Length + 1);
+                            visitsArrayCounter++;
+                        }
+                        else if (visitsBuffer[visitsBufferCounter].Equals('\r'))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            visitsArray[visitsArrayCounter] += visitsBuffer[visitsBufferCounter];
+                        }
+                    }
+
+                    CheckedListBox.Items.Clear();
+
+                    for (int i = 0; i < visitsArray.Length - 1; i++)
+                    {
+                        CheckedListBox.Items.Insert(i, visitsArray[i]);
+                    }
                 }
             }
         }
@@ -168,7 +180,6 @@ namespace Client
 
                 answer.Clear();
                 CancelVisit_Load(sender, e);
-
             }
         }
     }
